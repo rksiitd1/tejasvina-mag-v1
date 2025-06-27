@@ -25,7 +25,6 @@ import Image from "next/image"
 import Link from "next/link"
 
 export default function TejasvinaMagazine() {
-  const [activeSection, setActiveSection] = useState("home")
   const [isScrolled, setIsScrolled] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
@@ -849,29 +848,30 @@ export default function TejasvinaMagazine() {
             </div>
 
             <nav className="hidden md:flex items-center space-x-12">
-              {[
-                { name: "Home", id: "home", sanskrit: "गृह" },
-                { name: "Articles", id: "articles", sanskrit: "लेख" },
-                { name: "Issues", id: "issues", sanskrit: "अंक" },
-                { name: "About", id: "about", sanskrit: "परिचय" },
-              ].map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => setActiveSection(item.id)}
-                  className={`group font-medium transition-all duration-300 ${
-                    activeSection === item.id
-                      ? "text-amber-600"
-                      : isScrolled
-                        ? "text-slate-700 hover:text-amber-600"
-                        : "text-white hover:text-amber-200"
-                  }`}
-                >
-                  <div className="flex flex-col items-center">
-                    <span>{item.name}</span>
-                    <span className="text-xs opacity-60 font-serif">{item.sanskrit}</span>
-                  </div>
-                </button>
-              ))}
+              <Link href="/" className="group font-medium transition-all duration-300 text-amber-600">
+                <div className="flex flex-col items-center">
+                  <span>Home</span>
+                  <span className="text-xs opacity-60 font-serif">गृह</span>
+                </div>
+              </Link>
+              <Link href="/articles" className="group font-medium transition-all duration-300 text-slate-700 hover:text-amber-600">
+                <div className="flex flex-col items-center">
+                  <span>Articles</span>
+                  <span className="text-xs opacity-60 font-serif">लेख</span>
+                </div>
+              </Link>
+              <Link href="/issues" className="group font-medium transition-all duration-300 text-slate-700 hover:text-amber-600">
+                <div className="flex flex-col items-center">
+                  <span>Issues</span>
+                  <span className="text-xs opacity-60 font-serif">अंक</span>
+                </div>
+              </Link>
+              <Link href="/about" className="group font-medium transition-all duration-300 text-slate-700 hover:text-amber-600">
+                <div className="flex flex-col items-center">
+                  <span>About</span>
+                  <span className="text-xs opacity-60 font-serif">परिचय</span>
+                </div>
+              </Link>
             </nav>
 
             <Button className="bg-gradient-to-r from-amber-600 via-rose-600 to-indigo-600 hover:from-amber-700 hover:via-rose-700 hover:to-indigo-700 text-white rounded-full px-8 py-2 font-medium shadow-lg hover:shadow-amber-500/25 transition-all duration-300">
@@ -884,10 +884,7 @@ export default function TejasvinaMagazine() {
 
       {/* Main Content */}
       <main>
-        {activeSection === "home" && renderHome()}
-        {activeSection === "articles" && renderArticles()}
-        {activeSection === "issues" && renderIssues()}
-        {activeSection === "about" && renderAbout()}
+        {renderHome()}
       </main>
 
       {/* Footer */}

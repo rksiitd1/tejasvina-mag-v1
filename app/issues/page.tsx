@@ -1,7 +1,7 @@
 "use client"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { BookOpen, Lotus, Star } from "lucide-react"
+import { BookOpen, NotebookIcon as Lotus, Star } from "lucide-react"
 import Image from "next/image"
 
 const issues = [

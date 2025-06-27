@@ -1,7 +1,7 @@
 "use client"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
-import { Mail, Phone, MapPin, Zap, Globe, Lotus, Sparkles, Heart } from "lucide-react"
+import { Mail, Phone, MapPin, Zap, Globe, NotebookIcon as Lotus, Sparkles, Heart } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"

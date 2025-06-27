@@ -28,6 +28,7 @@ export default function TejasvinaMagazine() {
   const [activeSection, setActiveSection] = useState("home")
   const [isScrolled, setIsScrolled] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,11 +37,18 @@ export default function TejasvinaMagazine() {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY })
     }
+    const handleResize = () => {
+      setWindowSize({ width: window.innerWidth, height: window.innerHeight })
+    }
     window.addEventListener("scroll", handleScroll)
     window.addEventListener("mousemove", handleMouseMove)
+    window.addEventListener("resize", handleResize)
+    // Set initial window size
+    setWindowSize({ width: window.innerWidth, height: window.innerHeight })
     return () => {
       window.removeEventListener("scroll", handleScroll)
       window.removeEventListener("mousemove", handleMouseMove)
+      window.removeEventListener("resize", handleResize)
     }
   }, [])
 
@@ -140,12 +148,14 @@ export default function TejasvinaMagazine() {
           <div
             className="absolute inset-0 transition-all duration-1000 ease-out"
             style={{
-              background: `radial-gradient(circle at ${(mousePosition.x / window.innerWidth) * 100}% ${(mousePosition.y / window.innerHeight) * 100}%, 
-                rgba(251, 191, 36, 0.15) 0%, 
-                rgba(239, 68, 68, 0.1) 25%, 
-                rgba(99, 102, 241, 0.15) 50%, 
-                rgba(16, 185, 129, 0.1) 75%, 
-                rgba(0, 0, 0, 0.9) 100%)`,
+              background:
+                windowSize.width && windowSize.height
+                  ? `radial-gradient(circle at ${
+                      (mousePosition.x / windowSize.width) * 100
+                    }% ${
+                      (mousePosition.y / windowSize.height) * 100
+                    }%, \n                rgba(251, 191, 36, 0.15) 0%, \n                rgba(239, 68, 68, 0.1) 25%, \n                rgba(99, 102, 241, 0.15) 50%, \n                rgba(16, 185, 129, 0.1) 75%, \n                rgba(0, 0, 0, 0.9) 100%)`
+                  : undefined,
             }}
           />
 
